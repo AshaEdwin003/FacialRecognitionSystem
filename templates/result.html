@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block title %}Analysis Report{% endblock %}
+
+{% block content %}
+<div class="page-header d-flex justify-content-between align-items-center">
+    <div>
+        <h1 class="page-title">Analysis Report</h1>
+        <p class="text-secondary">Found {{ results|length }} face(s) in the provided image.</p>
+    </div>
+    <a href="{{ url_for('identify') }}" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> New Analysis</a>
+</div>
+
+<div class="row">
+    <div class="col-lg-5 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5>Source Image</h5>
+            </div>
+            <div class="card-body">
+                <img src="/{{ image_path }}" class="img-fluid rounded" alt="Uploaded Image">
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-7">
+        <h4>Identification Results</h4>
+        {% if results %}
+            {% for result in results %}
+                <div class="card mb-3 result-card {% if result.status == 'Match Found' %}match-found{% else %}no-match{% endif %}">
+                    <div class="card-body">
+                        {% if result.status == 'Match Found' %}
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h5 class="text-success mb-0"><i class="bi bi-check-circle-fill"></i> Match Found</h5>
+                                <span class="badge text-bg-success fs-6">{{ result.similarity }} Match</span>
+                            </div>
+                            <p class="mt-2 mb-2">Subject identified as: <strong>{{ result.details.name }}</strong></p>
+                            <details>
+                                <summary class="details-summary">
+                                    <i class="bi bi-caret-down-fill"></i> View Full Details
+                                </summary>
+                                <ul class="list-group list-group-flush mt-3">
+                                    <li class="list-group-item bg-transparent text-white"><strong>NIN:</strong> {{ result.details.nin }}</li>
+                                    <li class="list-group-item bg-transparent text-white"><strong>Date of Birth:</strong> {{ result.details.dob or 'Not Provided' }}</li>
+                                    <li class="list-group-item bg-transparent text-white"><strong>Nationality:</strong> {{ result.details.nationality or 'Not Provided' }}</li>
+                                    <li class="list-group-item bg-transparent text-white"><strong>Notes:</strong> {{ result.details.description or 'None' }}</li>
+                                </ul>
+                            </details>
+                        {% else %}
+                            <h5 class="text-danger mb-0"><i class="bi bi-x-circle-fill"></i> No Match Found</h5>
+                            <p class="text-secondary mt-2 mb-0">This face could not be identified in the database.</p>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="card">
+                <div class="card-body text-center">
+                    <p>No faces were detected or an error occurred during analysis.</p>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

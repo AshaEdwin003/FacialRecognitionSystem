@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %}Enroll Subject{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1 class="page-title">Enroll New Subject</h1>
+    <p class="text-secondary">Add a new identity to the forensic database.</p>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <h5>Subject Details</h5>
+    </div>
+    <div class="card-body p-4">
+        <form method="post" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="name" class="form-label">Full Name</label>
+                    <input type="text" class="form-control" id="name" name="name" required placeholder="e.g., John Doe">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="nin" class="form-label">NIN (National Identity Number)</label>
+                    <input type="text" class="form-control" id="nin" name="nin" required placeholder="e.g., 1234567890">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="dob" class="form-label">Date of Birth</label>
+                    <input type="date" class="form-control" id="dob" name="dob">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="nationality" class="form-label">Nationality</label>
+                    <input type="text" class="form-control" id="nationality" name="nationality" placeholder="e.g., Nigerian">
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Description / Case Notes</label>
+                <textarea class="form-control" id="description" name="description" rows="4" placeholder="Enter any relevant information..."></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="file" class="form-label">Subject's Image</label>
+                <input class="form-control" type="file" id="file" name="file" required>
+            </div>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button type="submit" class="btn btn-primary btn-lg">
+                    <i class="bi bi-database-add"></i> Save to Database
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

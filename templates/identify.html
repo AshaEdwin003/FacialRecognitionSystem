@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}Identify Subject{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1 class="page-title">Identity Verification</h1>
+    <p class="text-secondary">Upload an image to scan for potential matches in the database.</p>
+</div>
+
+<div class="row">
+    <div class="col-lg-10">
+        <div class="card">
+            <div class="card-body p-5">
+                <form method="post" enctype="multipart/form-data">
+                    <label for="file-upload" class="file-upload-wrapper" id="file-upload-area">
+                        <div class="upload-icon">
+                            <i class="bi bi-cloud-arrow-up-fill"></i>
+                        </div>
+                        <h4 id="upload-text">Drag & Drop or Click to Upload Image</h4>
+                        <p class="text-secondary">Supported formats: JPG, PNG, JPEG</p>
+                        <input type="file" id="file-upload" name="file" required onchange="updateFileName()">
+                    </label>
+                    <div class="d-grid mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="bi bi-binoculars-fill"></i> Analyze Image
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    function updateFileName() {
+        const fileInput = document.getElementById('file-upload');
+        const uploadText = document.getElementById('upload-text');
+        if (fileInput.files.length > 0) {
+            uploadText.textContent = fileInput.files[0].name;
+        } else {
+            uploadText.textContent = 'Drag & Drop or Click to Upload Image';
+        }
+    }
+</script>
+{% endblock %}

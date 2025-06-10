@@ -1,0 +1,140 @@
+/* --- Base Styles & Color Palette --- */
+:root {
+    --dark-bg: #1a1c23;
+    --sidebar-bg: #22252c;
+    --card-bg: #2a2d35;
+    --border-color: #40434d;
+    --primary-accent: #3d8bff;
+    --text-primary: #ffffff;
+    --text-secondary: #adb5bd;
+}
+
+body {
+    background-color: var(--dark-bg);
+    color: var(--text-primary);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+.main-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* --- Sidebar Navigation --- */
+.sidebar {
+    width: 260px;
+    background-color: var(--sidebar-bg);
+    padding: 1.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: 1.25rem;
+    font-weight: 600;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 1.5rem;
+}
+
+.sidebar-nav .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--text-secondary);
+    padding: 0.75rem 1rem;
+    border-radius: 0.375rem;
+    font-weight: 500;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.sidebar-nav .nav-link:hover {
+    background-color: var(--card-bg);
+    color: var(--text-primary);
+}
+
+.sidebar-nav .nav-link.active {
+    background-color: var(--primary-accent);
+    color: var(--text-primary);
+}
+
+.sidebar-footer {
+    margin-top: auto;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #6c757d;
+}
+
+/* --- Main Content Area --- */
+.main-content {
+    flex-grow: 1;
+    padding: 2rem;
+    overflow-y: auto;
+}
+
+.page-header {
+    margin-bottom: 2rem;
+}
+
+.page-title {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+/* --- Cards --- */
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+}
+.card-header {
+    background-color: var(--sidebar-bg);
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* --- Custom File Uploader --- */
+.file-upload-wrapper {
+    border: 2px dashed var(--border-color);
+    border-radius: 0.5rem;
+    padding: 3rem;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+.file-upload-wrapper:hover {
+    border-color: var(--primary-accent);
+    background-color: var(--sidebar-bg);
+}
+
+.file-upload-wrapper .upload-icon {
+    font-size: 3rem;
+    color: var(--primary-accent);
+}
+
+.file-upload-wrapper input[type="file"] {
+    display: none;
+}
+
+/* --- Result Card Styling --- */
+.result-card.match-found {
+    border-left: 5px solid #198754; /* Green for match */
+}
+.result-card.no-match {
+    border-left: 5px solid #dc3545; /* Red for no match */
+}
+
+.details-summary {
+    cursor: pointer;
+    font-weight: 500;
+    color: var(--primary-accent);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+}

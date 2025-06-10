@@ -1,0 +1,3 @@
+# python enroll_person.py --image known_people/person1.jpg --name "Edwin Asha"
+
+# python identify_person.py --image unknown_people/test_image1.jpg
